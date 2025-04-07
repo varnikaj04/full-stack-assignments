@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration </title>
+    <script>
+        function validateMe(){
+            document.getElementById("age").setCustomValidity("Please enter your age")
+        }
+        window.onload = validateMe;
+        function checkAge(elm){
+            if(elm.value < 18){
+                elm.setCustomValidity("you are too young to join")
+            } else if(elm.value > 60){
+                elm.setCustomValidity("you are too old to join")
+            } else{
+                elm.setCustomValidity("")
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        Employee Registration Form
+    </h1>
+    <form action="#" method="get">
+        <h2>Fill in your Details!</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>First Name</td>
+                    <td>
+                        <input required type="text" name="firstName" id="fn" placeholder="Enter your First name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>
+                        <input required type="text" name="lastName" id="ln" placeholder="Enter your Last name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>
+                        <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" type="email" name="email" id="email" placeholder="Enter your email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gender">Gender</label>
+                    </td>
+                    <td>
+                        <select required name="gender" id="gender">
+                            <option value="">Select your Gender</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>
+                        <input oninput="checkAge(this)" required type="number" name="age" id="age" placeholder="Enter your age">
+                    </td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>
+                        <input required list="city" placeholder="Select City">
+                        <datalist id="city">
+                            <option value="Ahemdabad"></option>
+                            <option value="Pune"></option>
+                            <option value="Bangalore"></option>
+                        </datalist>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Upload Resume</td>
+                    <td>
+                        <input required type="file" name="resume" id="resume" accept=".doc, .docx, .pdf">
+                    </td>
+                </tr>  
+                <tr>
+                    <td>Position to apply for:</td>
+                    <td>
+                        <div>
+                           <input type="checkbox" name="sde" id="sde" value="sde">
+                           <label for="sde">Android Developer</label> 
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <input type="checkbox" name="jdev" id="jdev" value="jdev">
+                            <label for="jdev">Java Developer</label> 
+                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tentative Date to join:</td>
+                    <td>
+                        <input type="date" name="date" id="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button style="width: 100px;">Submit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>

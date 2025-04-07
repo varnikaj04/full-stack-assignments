@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holi Greeting Card</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      border: 5px solid #e1e1e1;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+  
+</head>
+<body>
+  <canvas width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementsByTagName("canvas")[0];
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = "#ffcc00";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    function drawSplash(x, y, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, 40, 0, Math.PI * 2, false);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.closePath();
+    }
+    const colors = ["#ff6347", "#ff1493", "#32cd32", "#1e90ff", "#ff4500", "#dda0dd"];
+
+    for (let i = 0; i < 10; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      drawSplash(x, y, color);
+    }
+
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("Happy Holi!", canvas.width / 2, canvas.height / 2);
+  </script>
+</body>
+</html>
