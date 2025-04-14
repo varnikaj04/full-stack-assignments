@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex layout</title>
+    <style>
+      body{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        padding: 0px 200px;
+        flex-wrap: wrap;
+        margin-top: 50px;
+        justify-content: space-evenly;
+      }
+      article {
+        width: 200px;
+        background-color: lavender;
+        border: 2px solid gray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 10px;
+        gap: 5px;
+      }
+      .box1 {
+        background: url(images/file-icons.png) no-repeat -749px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box2 {
+        background: url(images/file-icons.png) no-repeat -24px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box3 {
+        background: url(images/file-icons.png) no-repeat -24px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box4 {
+        background: url(images/file-icons.png) no-repeat -1111px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box5 {
+        background: url(images/file-icons.png) no-repeat -24px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box6 {
+        background: url(images/file-icons.png) no-repeat -567px -200px;
+        width: 66px;
+        height: 80px;
+      }
+      .box7 {
+        background: url(images/file-icons.png) no-repeat -1111px -200px;
+        width: 66px;
+        height: 80px;
+      }
+      .box8 {
+        background: url(images/file-icons.png) no-repeat -930px -19px;
+        width: 66px;
+        height: 80px;
+      }
+      .box9 {
+        background: url(images/file-icons.png) no-repeat -567px -19px;
+        width: 66px;
+        height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <article id="one">
+      <div class="box1"></div>
+      <div title="css" class="icon">
+        <a href="downloads/appstyle.css">Download Style File</a>
+      </div>
+    </article>
+    <article id="two">
+      <div class="box2"></div>
+      <div title="pdf" class="icon">
+        <a href="downloads/mystyle.css">Download Resume</a>
+      </div>
+    </article>
+    <article id="three">
+      <div class="box3"></div>
+      <div title="pdf" class="icon">
+        <a href="downloads/mystyle.css">Download Passport</a>
+      </div>
+    </article>
+    <article id="four">
+      <div class="box4"></div>
+      <div title="jpg" class="icon">
+        <a href="downloads/mystyle.css">Download Photo</a>
+      </div>
+    </article>
+    <article id="five">
+      <div class="box5"></div>
+      <div title="pdf" class="icon">
+        <a href="downloads/mystyle.css">Download Bank Statement</a>
+      </div>
+    </article>
+    <article id="six">
+      <div class="box6"></div>
+      <div title="word" class="icon">
+        <a href="downloads/mystyle.css">Download Request Letter Format</a>
+      </div>
+    </article>
+    <article id="seven">
+      <div class="box7"></div>
+      <div title="zip" class="icon">
+        <a href="downloads/mystyle.css">Download All Past Reports</a>
+      </div>
+    </article>
+    <article id="eight">
+      <div class="box8"></div>
+      <div title="xml" class="icon">
+        <a href="downloads/mystyle.css">Download Backup</a>
+      </div>
+    </article>
+    <article id="nine">
+      <div class="box9"></div>
+      <div title="js" class="icon">
+        <a href="downloads/lib.js">Download Library</a>
+      </div>
+    </article>
+  </body>
+</html>
