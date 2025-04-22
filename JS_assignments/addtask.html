@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add / Edit Task</title>
+    <style>
+      body {
+        margin-left: 150px;
+        margin-top: 50px;
+        background-color: #e2eafc;
+      }
+      h2 {
+        font-family: sans-serif;
+        color: midnightblue;
+        font-size: 30px;
+      }
+      form {
+        border: 2px solid darkcyan;
+        width: fit-content;
+        padding: 20px;
+        background-color: #4472ca;
+        color: white;
+        font-size: 20px;
+
+        input, select {
+          padding: 2px;
+        }
+      }
+      button {
+        padding: 10px;
+        background-color: #edf2fb;
+        border: 2px solid darkblue;
+        border-radius: 20px;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Add / Edit Vehicle Task</h2>
+    <form id="taskForm">
+      <label>Vehicle Name:</label>
+      <input type="text" id="vehicleName" required /><br /><br />
+
+      <label>Model:</label>
+      <select id="model" required>
+        <option value="">Select Model</option>
+        <option value="Fortuner">Fortuner</option>
+        <option value="City">City</option>
+        <option value="Creta">Creta</option>
+        <option value="Nexon">Nexon</option></select
+      ><br /><br />
+
+      <label>Task Detail:</label>
+      <textarea id="taskDetail" required></textarea><br /><br />
+
+      <label>Due Date:</label>
+      <input type="date" id="dueDate" required min="" /><br /><br />
+
+      <label>Status:</label>
+      <select id="status">
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option></select
+      ><br /><br />
+
+      <input type="hidden" id="taskId" />
+      <button type="submit">Save Task</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("taskForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const id =
+            document.getElementById("taskId").value || Date.now().toString();
+          const vehicleName = document
+            .getElementById("vehicleName")
+            .value.trim();
+          const model = document.getElementById("model").value;
+          const taskDetail = document.getElementById("taskDetail").value.trim();
+          const dueDate = document.getElementById("dueDate").value;
+          const status = document.getElementById("status").value;
+
+          const task = {
+            id,
+            vehicleName,
+            model,
+            task: taskDetail,
+            dueDate,
+            status,
+          };
+
+          let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+          const index = tasks.findIndex((t) => t.id === id);
+          if (index !== -1) {
+            tasks[index] = task;
+          } else {
+            tasks.push(task);
+          }
+
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          window.location.href = "index.html";
+        });
+
+      window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const editId = params.get("id");
+
+        if (editId) {
+          const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+          const task = tasks.find((t) => t.id === editId);
+
+          if (task) {
+            document.getElementById("taskId").value = task.id;
+            document.getElementById("vehicleName").value = task.vehicleName;
+            document.getElementById("model").value = task.model;
+            document.getElementById("taskDetail").value = task.task;
+            document.getElementById("dueDate").value = task.dueDate;
+            document.getElementById("status").value = task.status;
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

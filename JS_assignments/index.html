@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #d7e3fc;
+        }
+        .mainbox{
+            margin: auto;
+            border: 2px solid darkcyan;
+            width: fit-content;
+            padding: 20px 40px;
+            background-color: #b6ccfe;
+            h1{
+                color: #4472ca;
+                font-family: sans-serif;
+            }
+            p{
+                font-size: 20px;
+                font-family: sans-serif;
+            }
+            button{
+                padding: 10px;
+                background-color: #edf2fb;
+                border: 2px solid darkblue;
+                border-radius: 20px;
+            }
+            a{
+                color: black;
+            }
+        }
+      .completed {
+        color: green;
+        font-weight: bold;
+      }
+      .pending {
+        color: red;
+      }
+      li {
+        margin: 10px 0;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+      li button{
+        margin-top: 10px;
+      }
+
+      select {
+        margin-left: 20px;
+        font-size: 15px;
+        padding: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainbox">
+      <h1>Vehicle Management Tracker</h1>
+      <p>Keep your vehicles up-to-date!!</p>
+      <button><a href="addtask.html"> Add New Task</a></button>
+
+      <select id="filter">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+      </select>
+
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      const taskList = document.getElementById("taskList");
+      const filter = document.getElementById("filter");
+
+      function renderTasks() {
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        const selectedFilter = filter.value;
+        taskList.innerHTML = "";
+
+        tasks
+          .filter(
+            (task) => selectedFilter === "all" || task.status === selectedFilter
+          )
+          .forEach((task) => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+        <strong>${task.vehicleName} (${task.model})</strong><br>
+        ${task.task} - <em>${task.dueDate}</em>
+        <br>Status: <span class="${task.status}">${task.status}</span>
+        <br>
+        <button onclick="markComplete('${task.id}')">Mark as Complete</button>
+        <button onclick="editTask('${task.id}')">Edit</button>
+        <button onclick="deleteTask('${task.id}')">Delete</button>
+      `;
+
+            if (task.status === "completed") {
+              li.style.textDecoration = "line-through";
+            }
+
+            taskList.appendChild(li);
+          });
+      }
+
+      function markComplete(id) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.map((t) =>
+          t.id === id ? { ...t, status: "completed" } : t
+        );
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+      }
+
+      function editTask(id) {
+        const tasks = JSON.parse(localStorage.getItem("tasks"))
+        if(tasks.status !== "completed"){
+            window.location.href = `addtask.html?id=${id}`;
+        } else{
+            alert("This task can not be modified !!")
+        }
+        
+      }
+
+      function deleteTask(id) {
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.filter((t) => t.id !== id);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+      }
+
+      filter.addEventListener("change", renderTasks);
+      window.onload = renderTasks;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Word Search and Highlight</title>
+  <style>
+    .highlight {
+      background-color: crimson;
+      color: white;
+      font-weight: bold;
+    }
+    #paragraph {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Search and Highlight Word in Paragraph</h2>
+
+  <input type="text" id="searchInput" placeholder="Enter word to search" />
+  <button onclick="highlightWord()">Search</button>
+
+  <p id="paragraph">
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+      maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+      nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+      maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+      nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+      maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+      nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+      maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+      nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+  </p>
+
+  <script>
+    function highlightWord() {
+      const input = document.getElementById('searchInput').value.trim();
+      const para = document.getElementById('paragraph');
+      const text = para.textContent;
+
+      if (input === '') {
+        alert("Please enter a word to search.");
+        return;
+      }
+      const regex = new RegExp(`\\b(${input})\\b`, 'gi');
+      const highlightedText = text.replace(regex, '<span class="highlight">$1</span>');
+
+      para.innerHTML = highlightedText;
+    }
+  </script>
+
+</body>
+</html>

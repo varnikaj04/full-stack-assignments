@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Highlight First Match</title>
+    <style>
+      .highlight {
+      background-color: crimson;
+      color: white;
+      font-weight: bold;
+    }
+    #paragraph {
+      margin-top: 20px;
+    }
+    </style>
+  </head>
+  <body>
+    <h2>Highlight Only First Matching Word</h2>
+
+    <input type="text" id="searchInput" placeholder="Enter word to search" />
+    <button onclick="highlightFirstMatch()">Search</button>
+
+    <p id="paragraph">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+        maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+        nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+        maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+        nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+        maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+        nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore ducimus
+        maiores hic officiis. Nesciunt fugiat iusto doloribus ratione id? Ut
+        nesciunt quidem aliquid eveniet incidunt quam autem, quis esse voluptates?
+    </p>
+
+    <script>
+      function highlightFirstMatch() {
+        const input = document.getElementById("searchInput").value.trim().toLowerCase();
+        const para = document.getElementById("paragraph");
+        const text = para.textContent;
+
+        if (input === "") {
+          alert("Please enter a word to search.");
+          para.textContent = text;
+          return;
+        }
+
+        const words = originalText.split(/(\s+)/);
+        let found = false;
+
+        const newWords = words.map((word) => {
+          if (!found) {
+            const cleanWord = word.replace(/[.,!?;:()]/g, "").toLowerCase();
+            if (cleanWord === input) {
+              found = true;
+              return `<span class="highlight">${word}</span>`;
+            }
+          }
+          return word;
+        });
+
+        para.innerHTML = newWords.join("");
+      }
+    </script>
+  </body>
+</html>
